@@ -1,52 +1,56 @@
-
-
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
-
 function main() {
-    const player = {
-        x: 50,
-        y: 150,
-        width: 25,
-        height: 25,
-        color: "white",
-        velocityY: 0,
-        isJumping: false,
-        gravity: 0.5,
-        jumpStrength: -10,
-        draw: function() {
-            ctx.fillStyle = this.color;
-            ctx.fillRect(this.x, this.y, this.width, this.height);
-        },
-        update: function() {
-            this.velocityY += this.gravity;
-            this.y += this.velocityY;
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
 
-            // Ground collision
-            if (this.y + this.height >= canvas.height) {
-                this.y = canvas.height - this.height;
-                this.velocityY = 0;
-                this.isJumping = false;
-            }
+    let spacePressed = false;
+    
+
+    const player = {
+        height: 15,
+        width: 15,
+        x: 30,
+        y: 115,
+        draw: function() {
+            ctx.beginPath();
+            ctx.rect(this.x, this.y, this.height, this.width);
+            ctx.fillStyle = "black";
+            ctx.fill();
+            ctx.closePath();
+        },
+        jump: function(e) {
+            if (e.key === " ") {
+                this.y -= 7;
+            } else return;
         }
-    };
+
+    }
+
+    function drawGrass() {
+        ctx.beginPath();
+        ctx.rect(0, 130, 299, 20);
+        ctx.fillStyle = "green";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function render() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        drawGrass();
+        player.draw();
+        requestAnimationFrame(render);
+    }
+
+    
+    
 
     document.addEventListener("keydown", function(e) {
-        if (e.code === "Space" && !player.isJumping) {
-            player.velocityY = player.jumpStrength;
-            player.isJumping = true;
+        if (e.code === "Space") {
+            e.preventDefault();
+            player.jump(e);
         }
     });
 
-    function gameLoop() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        player.update();
-        player.draw();
-        requestAnimationFrame(gameLoop);
-    }
-
-    gameLoop();
-}
+    render();
+};
 
 main();
-

@@ -1,5 +1,5 @@
 :root {
-    --bckgrnd: grey;
+    --sky: #87CEEB;
 }
 
 * {
@@ -7,26 +7,30 @@
     box-sizing: border-box;
 }
 
-body, html {
-    height: 100%;
-    width: 100%;
+body {
+    height: 100vh;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--bckgrnd);
+
+#gameCanvas {
+    background-color: var(--sky);
+    height: 100vh;
+    width: 100vw;
 }
 
 .title {
     text-align: center;
 }
 
-#gameCanvas {
-    height: 50vh;
-    width: 50vw;
-   background-color: black;
+.grass {
+    height: 20vh;
+    width: 100vw;
+    background-color: #3f9b0b;
 }
 
+.player {
+    background-color: black;
+    height: 5vh;
+    width: 5vw;
+    justify-self: center;
+}

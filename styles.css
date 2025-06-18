@@ -17,6 +17,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: var(--bckgrnd);
 }
 
 .title {
@@ -26,6 +27,6 @@ body {
 #gameCanvas {
     height: 50vh;
     width: 50vw;
-   
+   background-color: black;
 }
 

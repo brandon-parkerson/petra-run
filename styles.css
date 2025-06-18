@@ -1,0 +1,31 @@
+:root {
+    --bckgrnd: grey;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+}
+
+#gameCanvas {
+    height: 50vh;
+    width: 50vw;
+   
+}
+
